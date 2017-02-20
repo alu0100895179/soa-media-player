@@ -8,6 +8,13 @@
 
 #include <QMediaPlayer>
 
+#include <QString>
+#include <QFileDialog>
+#include <QUrl>
+#include <QList>
+
+#include <cstdio>
+
 namespace Ui {
 class RepMainWindow;
 }
@@ -23,8 +30,22 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_5_clicked();
+
+    void on_pushButton_2_clicked();
+
 private:
     Ui::RepMainWindow *ui;
+    bool rep;
+    bool web;
+    bool pau;
+    QMediaPlayer* player;
+    QMediaPlaylist* playlist;
+    QCamera* camera;
 };
 
 #endif // REPMAINWINDOW_H
