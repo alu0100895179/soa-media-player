@@ -72,6 +72,10 @@
         <property name="text">
          <string>WebCam</string>
         </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../wc.ico</normaloff>../wc.ico</iconset>
+        </property>
        </widget>
       </item>
       <item>
@@ -162,7 +166,7 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
   </widget>
  </widget>

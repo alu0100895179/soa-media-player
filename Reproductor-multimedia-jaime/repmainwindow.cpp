@@ -26,6 +26,9 @@ RepMainWindow::~RepMainWindow()
 void RepMainWindow::on_pushButton_clicked()
 {
 
+    ui->pushButton_4->setText("«");
+    ui->pushButton_5->setText("»");
+
     if (!rep){
 
         web=false;
@@ -44,7 +47,7 @@ void RepMainWindow::on_pushButton_clicked()
         else{
 
             player = new QMediaPlayer;
-            QString filename = QFileDialog::getOpenFileName(this, "Open a File","","Video File (*.avi);(*.mp4)");
+            QString filename = QFileDialog::getOpenFileName(this, "Open a File","","Video File (*.mp4 *.avi)");
 
             player->setMedia(QUrl::fromLocalFile(filename));
             player->setVideoOutput(ui->widget);
@@ -73,6 +76,9 @@ void RepMainWindow::on_pushButton_3_clicked()
         ui->pushButton->setText("▶");
         rep=false;
         player->stop();
+
+        ui->pushButton_4->setText("«");
+        ui->pushButton_5->setText("»");
     }
     else{
         delete camera;
@@ -83,32 +89,53 @@ void RepMainWindow::on_pushButton_3_clicked()
 void RepMainWindow::on_pushButton_4_clicked()
 {
     if(rep){
-        if(player->playbackRate()>1)
+        if(player->playbackRate()>1){
             player->setPlaybackRate(1);
+            ui->pushButton_4->setText("«");
+            ui->pushButton_5->setText("»");
+        }
         else
-            if(player->playbackRate()==1)
-                player->setPlaybackRate(-0.2);
+            if(player->playbackRate()==1){
+                player->setPlaybackRate(-1);
+                ui->pushButton_4->setText("««");
+            }
             else
-                if(player->playbackRate()==-0.2)
-                    player->setPlaybackRate(-0.5);
+                if(player->playbackRate()==-1){
+                    player->setPlaybackRate(-1.5);
+                    ui->pushButton_4->setText("«««");
+                }
                 else
-                    player->setPlaybackRate(-1.0);
+                    if(player->playbackRate()==-1.5){
+                        player->setPlaybackRate(-2.0);
+                        ui->pushButton_4->setText("««««");
+
+                    }
     }
 }
 
 void RepMainWindow::on_pushButton_5_clicked()
 {
     if(rep){
-        if(player->playbackRate()<0)
+        if(player->playbackRate()<0){
             player->setPlaybackRate(1);
+            ui->pushButton_4->setText("«");
+            ui->pushButton_5->setText("»");
+        }
         else
-            if(player->playbackRate()==1)
+            if(player->playbackRate()==1){
                 player->setPlaybackRate(1.4);
+                ui->pushButton_5->setText("»»");
+            }
             else
-                if(player->playbackRate()==1.4)
+                if(player->playbackRate()==1.4){
                     player->setPlaybackRate(1.8);
+                    ui->pushButton_5->setText("»»»");
+                }
                     else
-                        player->setPlaybackRate(2.5);
+                        if(player->playbackRate()==1.8){
+                            player->setPlaybackRate(2.5);
+                            ui->pushButton_5->setText("»»»»");
+                        }
 
     }
 }
@@ -120,6 +147,8 @@ void RepMainWindow::on_pushButton_2_clicked()
         delete player;
         delete playlist;
         ui->pushButton->setText("▶");
+        ui->pushButton_4->setText("«");
+        ui->pushButton_5->setText("»");
 
         camera = new QCamera;
 
